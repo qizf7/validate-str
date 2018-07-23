@@ -1,0 +1,23 @@
+{
+  "name": "validate-str",
+  "version": "0.0.1",
+  "description": "validate string by regexp or function, return error message list.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qizf7/validate-str.git"
+  },
+  "keywords": [
+    "validate",
+    "validator"
+  ],
+  "author": "qizf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qizf7/validate-str/issues"
+  },
+  "homepage": "https://github.com/qizf7/validate-str#readme"
+}
