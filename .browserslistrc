@@ -1,0 +1,14 @@
+# Browsers that we support
+
+[production]
+last 3 versions
+> 1% in CN
+Firefox ESR
+opera 12.1
+ie >= 9
+edge >= 12
+safari >= 7
+
+[development]
+last 1 chrome version
+last 1 firefox version
