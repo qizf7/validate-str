@@ -1,67 +1,65 @@
-# string validate program
+# validate string
+validate string by regexp or function, return error message list.
 
-### 功能
-> 用正则，方法或内置方法校验字符串
-
-### 用法
+### useage
 ```javascript
   validate([{
     value: '123456789012345',
-    validations: [
+    validators: [
       {
-        msg: '请输入',
+        msg: 'please input',
         method: 'require'
       },
       {
-        msg: '身份证号错误',
+        msg: 'identity error',
         method: 'identity'
       }
     ]
   },
   {
     value: '123456789012345',
-    validations: [
+    validators: [
       {
-        msg: '请输入',
+        msg: 'please input',
         method: 'require'
       },
       {
-        msg: '身份证号错误',
+        msg: 'identity error',
         method: 'identity'
       }
     ]
   }], {type: 'single'})
-  
+
 ```
 
-### 参数说明
-validate(vlEntries, option)
-* vlEntries 检验数组
-* option 选项
+### param spec
+validate(vlEntries, options)
+* vlEntries An array of validation
+* options options
 
-## vlEntries 
-格式如上例
+## vlEntries
+see above example
 <dl>
   <dt>value</dt>
-  <dd>被校验的字符串</dd>
+  <dd>string to be validated</dd>
 </dl>
 <dl>
-  <dt>validations</dt>
-  <dd>校验规则数组</dd>
+  <dt>validators</dt>
+  <dd>validator list</dd>
 </dl>
 <dl>
   <dt>msg</dt>
-  <dd>校验失败返回结果</dd>
+  <dd>the message to be returned when validation fails</dd>
 </dl>
 
 ## option
 ### option.type
 <dl>
   <dt>single</dt>
-  <dd>single模式只返回校验数组中的第一个对象的结果，格式为 ['msg1', 'msg2']</dd>
+  <dd>single mode only return the first error msg when validation fails，like ['errMsg', 'errMsg']</dd>
 </dl>
 <dl>
   <dt>multiple</dt>
-  <dd>multiple模式返回完整校验结果，格式为[['msg1', 'msg2'], [msg1, msg2]]</dd>
+  <dd>multiple mode return all error msgs when validation fails，like [['errMsg', 'errMsg'], ['errMsg', 'errMsg']]</dd>
 </dl>
 
