@@ -1,6 +1,6 @@
 {
   "name": "validate-str",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "validate string by regexp or function, return error message list.",
   "main": "lib/validate-str.js",
   "scripts": {
