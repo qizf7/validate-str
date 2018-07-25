@@ -72,7 +72,9 @@ function validate(vlEntries, options) {
       resultArray.push(result);
     }
   }
-  return resultArray;
+  if (options.mode !== 'single') {
+    return resultArray;
+  }
 }
 
 module.exports = validate;
