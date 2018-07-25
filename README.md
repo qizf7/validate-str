@@ -1,9 +1,10 @@
 # validate string
 validate string by regexp or function, return error message list.
 
-### useage
+### usage
 ```javascript
   validate([{
+    name: 'id1',
     value: '123456789012345',
     validators: [
       {
@@ -17,6 +18,7 @@ validate string by regexp or function, return error message list.
     ]
   },
   {
+    name: 'id2',
     value: '123456789012345',
     validators: [
       {
@@ -28,7 +30,7 @@ validate string by regexp or function, return error message list.
         method: 'identity'
       }
     ]
-  }], {type: 'single'})
+  }], {mode: 'single'})
 
 ```
 
@@ -52,14 +54,24 @@ see above example
   <dd>the message to be returned when validation fails</dd>
 </dl>
 
-## option
-### option.type
+## options
+### options.mode
 <dl>
   <dt>single</dt>
-  <dd>single mode only return the first error msg when validation fails，like ['errMsg', 'errMsg']</dd>
+  <dd>single mode only return the first error msg when validation fails，like {name: 'id1', errors: ['errMsg', 'errMsg']}.</dd>
 </dl>
 <dl>
   <dt>multiple</dt>
-  <dd>multiple mode return all error msgs when validation fails，like [['errMsg', 'errMsg'], ['errMsg', 'errMsg']]</dd>
+  <dd>multiple mode return ResultArray entry. </dd>
+</dl>
+
+### ResultArray
+<dl>
+  <dt>ResultArray#isValid</dt>
+  <dd>.</dd>
+</dl>
+<dl>
+  <dt>ResultArray#getErrorsByName</dt>
+  <dd>.</dd>
 </dl>
 

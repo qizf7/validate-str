@@ -1,4 +1,5 @@
 const regexs = require('./regexs');
+const ResultArray = require('./ResultArray');
 
 /**
  * @param {String} 被校验的字符串
@@ -21,56 +22,57 @@ function test(v, method) {
     if (method in regexs) {
       return regexs[method].test(v);
     } else {
-      throw new TypeError('Not a valid method string!!!!!!!!!!!');
+      throw new TypeError('not a valid method string!!!!!!!!!!!');
     }
   } else if (method instanceof RegExp) {
     return method.test(v);
   } else if (typeof method === 'function') {
     return method(v)
   } else {
-    throw new TypeError('Unsupported method')
+    throw new TypeError('unsupported method')
   }
 }
 
 /**
  * 校验方法
  * @param  {Array} validArr 校验数组
- * @param  {Objecg} option   选项
+ * @param  {Objecg} options   选项
  * @return {Array} 验证结果
  */
-function validate(vlEntries, option) {
+function validate(vlEntries, options) {
   if (!vlEntries) {
-    throw new TypeError('Need validation array passed in');
+    throw new TypeError('need validation array passed in');
   }
   if(!vlEntries instanceof Array) {
-    throw new TypeError('Validation array mast be an array');
+    throw new TypeError('validation array must be an array');
   }
-  option = option || {};
-  option.type = option.type || 'single';
-  var errorsArray = [];
-  var errors = [];
-  for (var i = 0, vlEntry; vlEntry = vlEntries[i]; i++) {
-    var value = vlEntry.value;
-    var validations = vlEntry.validations;
-    for (var j = 0, validation; validation = validations[j]; j++) {
-      if(!test(value, validation['method'])){
-        errors.push(validation['msg']);
+  if(!vlEntries.every(item => item.name)){
+    throw new TypeError('validation entry must have name prop');
+  }
+  options = options || {};
+  options.mode = options.mode || 'single';
+  let resultArray = new ResultArray();
+  for (let i = 0, vlEntry; vlEntry = vlEntries[i]; i++) {
+    let value = vlEntry.value;
+    let validators = vlEntry.validators;
+    let result = {
+      name: vlEntry.name,
+      errors: []
+    };
+    for (let j = 0, validator; validator = validators[j]; j++) {
+      if(!test(value, validator['method'])){
+        result.errors.push(validator.msg)
       }
     }
-    if (option.type === 'single') {
-      if(errors.length) {
-        return errors;
+    if (options.mode === 'single') {
+      if(result.errors.length) {
+        return result;
       }
     } else {
-      if(errors.length) {
-        errorsArray.push(errors.slice());
-        errors.length = 0;
-      }
+      resultArray.push(result);
     }
   }
-  if (errorsArray.length) {
-    return errorsArray;
-  }
+  return resultArray;
 }
 
 module.exports = validate;
