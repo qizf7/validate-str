@@ -13,7 +13,7 @@ describe('test validate', function() {
         },
         {
           msg: 'identity error',
-          method: 'identity'
+          method: 'zh-identity'
         }
       ]
     },
@@ -27,10 +27,9 @@ describe('test validate', function() {
         },
         {
           msg: 'identity error',
-          method: 'identity'
+          method: 'zh-identity'
         }
       ]
     }], {mode: 'single'})
-    // chai.assert.equal(result.isValid(), false)
   });
 });

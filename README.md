@@ -34,44 +34,50 @@ validate string by regexp or function, return error message list.
 
 ```
 
-### param spec
+## params
 validate(vlEntries, options)
 * vlEntries An array of validation
 * options options
 
 ## vlEntries
 see above example
-<dl>
-  <dt>value</dt>
-  <dd>string to be validated</dd>
-</dl>
-<dl>
-  <dt>validators</dt>
-  <dd>validator list</dd>
-</dl>
-<dl>
-  <dt>msg</dt>
-  <dd>the message to be returned when validation fails</dd>
-</dl>
+### vlEntries[].name
+validation name, used by result list
+### vlEntries[].value
+string to be validated
+### vlEntries[].validators
+validator list
+### vlEntries[].validators[].msg
+the message to be returned when validation fail
+### vlEntries[].validators[].method
+the validate method, can be function, regexp, string
+
+## internal support method
+[supported regexp inner](https://github.com/qizf7/regexp-hub), you can use these regexp names as method directly.
 
 ## options
-### options.mode
-<dl>
-  <dt>single</dt>
-  <dd>single mode only return the first error msg when validation fails，like {name: 'id1', errors: ['errMsg', 'errMsg']}.</dd>
-</dl>
-<dl>
-  <dt>multiple</dt>
-  <dd>multiple mode return ResultArray entry. </dd>
-</dl>
 
-### ResultArray
-<dl>
-  <dt>ResultArray#isValid</dt>
-  <dd>.</dd>
-</dl>
-<dl>
-  <dt>ResultArray#getErrorsByName</dt>
-  <dd>.</dd>
-</dl>
+### options.mode
+
+#### single
+only return the first error object when validation fails.
+```javascript
+  {
+    name: 'id1',
+    errors: ['errMsg', 'errMsg']
+  }
+```
+#### multiple
+return error object list.
+```javascript
+  [
+    {
+      name: 'id1',
+      errors: ['errMsg', 'errMsg']
+    }, {
+      name: 'id2',
+      errors: ['errMsg', 'errMsg']
+    }
+  ]
+```
 
